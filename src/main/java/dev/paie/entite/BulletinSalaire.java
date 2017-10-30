@@ -4,9 +4,13 @@ import java.math.BigDecimal;
 
 public class BulletinSalaire {
 	
+	/** id : Integer */
 	private Integer id;
+	/** remunerationEmploye : RemunerationEmploye */
 	private RemunerationEmploye remunerationEmploye;
+	/** periode : Periode */
 	private Periode periode;
+	/** primeExceptionnelle : BigDecimal */
 	private BigDecimal primeExceptionnelle;
 	
 	public RemunerationEmploye getRemunerationEmploye() {
