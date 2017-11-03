@@ -2,15 +2,28 @@ package dev.paie.entite;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 /**
  * @author ETY9
  *
  */
+@Entity
+@Table(name="profilRemuneration")
 public class ProfilRemuneration {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	/** id : Integer */
 	private Integer id;
+	
+	@Column(name="code", length = 25, nullable = false)
 	/** code : String */
 	private String code;
 

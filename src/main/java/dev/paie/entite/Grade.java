@@ -2,6 +2,13 @@ package dev.paie.entite;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
@@ -9,14 +16,24 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
  * @author ETY9
  *
  */
+@Entity
+@Table(name="grade")
 public class Grade {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	/** id : Integer */
 	private Integer id;
+	
+	@Column(name="code", length = 25, nullable = false)
 	/** code : String */
 	private String code;
+	
+	@Column(name="nbHeuresBase", precision = 5, scale = 2, nullable = true)
 	/** nbHeuresBase : BigDecimal */
 	private BigDecimal nbHeuresBase;
+	
+	@Column(name="tauxBase", precision = 5, scale = 2, nullable = true)
 	/** tauxBase : BigDecimal */
 	private BigDecimal tauxBase;
 	

@@ -1,5 +1,12 @@
 package dev.paie.entite;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author ETY9
  *
@@ -8,12 +15,20 @@ package dev.paie.entite;
  * @author ETY9
  *
  */
+@Entity
+@Table(name="remunerationEmploye")
 public class RemunerationEmploye {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	/** id : Integer */
 	private Integer id;
+	
+	@Column(name="matricule", length = 50, nullable = false)
 	/** matricule : String */
 	private String matricule;
+	
+	
 	/** entreprise : Entreprise */
 	private Entreprise entreprise;
 	/** profilRemuneration : ProfilRemuneration */
