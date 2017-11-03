@@ -2,6 +2,9 @@ package dev.paie.entite;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 /**
  * @author ETY9
  *
@@ -65,4 +68,22 @@ public class Grade {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	@Override
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+        Grade rhs = (Grade) obj;
+        return new EqualsBuilder().append(code, rhs.code).isEquals() && new CompareToBuilder()
+                .append(nbHeuresBase, rhs.nbHeuresBase).append(tauxBase, rhs.tauxBase).toComparison() == 0;
+
+    }
 }

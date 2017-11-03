@@ -1,6 +1,5 @@
 package dev.paie.util;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
