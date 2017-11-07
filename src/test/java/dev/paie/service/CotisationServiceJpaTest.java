@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Cotisation;
 import dev.paie.spring.DataSourceMySQLConfig;
 import dev.paie.spring.JpaConfig;
@@ -22,7 +23,7 @@ import dev.paie.spring.JpaConfig;
  *
  */
 //Sélection des classes de configuration Spring à utiliser lors du test
-@ContextConfiguration(classes = { DataSourceMySQLConfig.class, JpaConfig.class})
+@ContextConfiguration(classes = { ServicesConfig.class})
 //Configuration JUnit pour que Spring prenne la main sur le cycle de vie du test
 @RunWith(SpringRunner.class)
 public class CotisationServiceJpaTest {
