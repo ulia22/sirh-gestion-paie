@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.persistence.JoinColumn;
 
 /**
  * @author ETY9
@@ -19,7 +22,7 @@ import javax.persistence.Table;
 public class ProfilRemuneration {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	/** id : Integer */
 	private Integer id;
 	
@@ -27,12 +30,28 @@ public class ProfilRemuneration {
 	/** code : String */
 	private String code;
 
+	
+	@ManyToMany
+	@JoinTable(name="pro_cot_nimp",
+	joinColumns=
+		@JoinColumn(name="ID_pro", referencedColumnName="ID"),
+		inverseJoinColumns=
+		@JoinColumn(name="ID_cot", referencedColumnName="ID")
+		)
 	/** cotisationsNonImposables : List<Cotisation> */
 	private List<Cotisation> cotisationsNonImposables;
 	
+	@ManyToMany
+	@JoinTable(name="pro_cot_imp",
+	joinColumns=
+		@JoinColumn(name="ID_pro", referencedColumnName="ID"),
+		inverseJoinColumns=
+		@JoinColumn(name="ID_cot", referencedColumnName="ID")
+		)
 	/** cotisationsImposables : List<Cotisation> */
 	private List<Cotisation> cotisationsImposables;
 	
+	@OneToMany
 	/** avantages : List<Avantage> */
 	private List<Avantage> avantages;
 

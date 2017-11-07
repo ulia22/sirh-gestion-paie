@@ -1,13 +1,18 @@
 package dev.paie.entite;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -19,7 +24,7 @@ import javax.persistence.Table;
 public class Periode {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	/** id : Integer */
 	private Integer id;
 	
@@ -30,6 +35,9 @@ public class Periode {
 	@Column(name="dateFin", nullable = false)
 	/** dateFin : LocalDate */
 	private LocalDate dateFin;
+	
+	@OneToMany(mappedBy="periode")
+	private List<BulletinSalaire> bulletinsSalaire;
 	
 	/**
 	 * @return
@@ -66,5 +74,23 @@ public class Periode {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	/**
+	 * Getter for bulletinsSalaire.
+	 * @return the bulletinsSalaire
+	 */
+	public List<BulletinSalaire> getBulletinsSalaire() {
+		return bulletinsSalaire;
+	}
+	/**
+	 * Setter for bulletinsSalaire
+	 * @param bulletinsSalaire the bulletinsSalaire to set
+	 */
+	public void setBulletinsSalaire(List<BulletinSalaire> bulletinsSalaire) {
+		this.bulletinsSalaire = bulletinsSalaire;
 	}	
+	
+	public String getRange(){
+		return dateDebut.toString()+" - "+dateFin.toString();
+	}
 }

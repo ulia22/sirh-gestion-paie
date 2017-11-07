@@ -3,39 +3,23 @@
  */
 package dev.paie.entite;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 /**
  * @author ETY9
  *
  */
-@Entity
-@Table(name="resultatCalculRemuneration")
+
 public class ResultatCalculRemuneration {
 	
-	@Column(name="salaireDeBase", length = 50, nullable = false)
 	private String salaireDeBase;
 	
-	
-	@Column(name="salaireBrut", length = 50, nullable = false)
 	private String salaireBrut;
 	
-	
-	@Column(name="totalRetenueSalarial", length = 50, nullable = false)
 	private String totalRetenueSalarial;
 	
-	
-	@Column(name="totalCotisationsPatronales", length = 50, nullable = false)
 	private String totalCotisationsPatronales;
 	
-	
-	@Column(name="netImposable", length = 50, nullable = false)
 	private String netImposable;
-	
-	
-	@Column(name="netAPayer", length = 50, nullable = false)
+
 	private String netAPayer;
 	
 	

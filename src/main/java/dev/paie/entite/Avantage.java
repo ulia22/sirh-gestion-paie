@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Avantage {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	/** id : Integer */
 	private Integer id;
 	
@@ -29,7 +29,6 @@ public class Avantage {
 	@Column(name="montant", precision=5, scale=2, nullable=true)
 	/** montant : BigDecimal */
 	private BigDecimal montant;
-
 	
 	/**
 	 * 

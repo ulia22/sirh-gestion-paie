@@ -1,10 +1,14 @@
 package dev.paie.entite;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +24,7 @@ import javax.persistence.Table;
 public class RemunerationEmploye {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	/** id : Integer */
 	private Integer id;
 	
@@ -28,13 +32,19 @@ public class RemunerationEmploye {
 	/** matricule : String */
 	private String matricule;
 	
-	
+	@ManyToOne
 	/** entreprise : Entreprise */
 	private Entreprise entreprise;
+	@ManyToOne
 	/** profilRemuneration : ProfilRemuneration */
 	private ProfilRemuneration profilRemuneration;
+	@ManyToOne
 	/** grade : Grade */
 	private Grade grade;
+	
+	/** dateHeureCreation : LocalDateTime */
+	@Column
+	private LocalDateTime dateHeureCreation;
 	
 	/**
 	 * @return
@@ -96,5 +106,19 @@ public class RemunerationEmploye {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	/**
+	 * Getter for dateHeureCreation.
+	 * @return the dateHeureCreation
+	 */
+	public LocalDateTime getDateHeureCreation() {
+		return dateHeureCreation;
+	}
+	/**
+	 * Setter for dateHeureCreation
+	 * @param dateHeureCreation the dateHeureCreation to set
+	 */
+	public void setDateHeureCreation(LocalDateTime dateHeureCreation) {
+		this.dateHeureCreation = dateHeureCreation;
 	}
 }

@@ -21,7 +21,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 public class Grade {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	/** id : Integer */
 	private Integer id;
 	
@@ -103,4 +103,8 @@ public class Grade {
                 .append(nbHeuresBase, rhs.nbHeuresBase).append(tauxBase, rhs.tauxBase).toComparison() == 0;
 
     }
+	
+	public String getSalaireAnnuel() {
+		return tauxBase.multiply(nbHeuresBase).multiply(new BigDecimal(12)).intValue()+"€";
+	}
 }

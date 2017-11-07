@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Entreprise {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	/** id : Integer */
 	private Integer id;
 	
@@ -32,7 +32,7 @@ public class Entreprise {
 	/** adresse : String */
 	private String adresse;
 	
-	@Column(name="urssaf", length=50, nullable=false)
+	@Column(name="urssaf", length=50, nullable=true)
 	/** urssaf : String */
 	private String urssaf;
 	

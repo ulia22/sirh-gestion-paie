@@ -25,18 +25,12 @@ import dev.paie.entite.Cotisation;
 public class CotisationServiceJpa implements CotisationService{
 	@PersistenceContext private EntityManager em;
 
-	/* (non-Javadoc)
-	 * @see dev.paie.service.CotisationService#sauvegarder(dev.paie.entite.Cotisation)
-	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, timeout=60)
 	public void sauvegarder(Cotisation nouvelleCotisation) {
 		em.persist(nouvelleCotisation);
 	}
 
-	/* (non-Javadoc)
-	 * @see dev.paie.service.CotisationService#mettreAJour(dev.paie.entite.Cotisation)
-	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, timeout=60)
 	public void mettreAJour(Cotisation cotisation) {
@@ -47,9 +41,6 @@ public class CotisationServiceJpa implements CotisationService{
 		c.setTauxSalarial(cotisation.getTauxSalarial());
 	}
 
-	/* (non-Javadoc)
-	 * @see dev.paie.service.CotisationService#lister()
-	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, timeout=60)
 	public List<Cotisation> lister() {
