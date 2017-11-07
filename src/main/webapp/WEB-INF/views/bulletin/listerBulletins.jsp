@@ -76,7 +76,7 @@
 						<td>${bull.value.salaireBrut }</td>
 						<td>${bull.value.netImposable }</td>
 						<td>${bull.value.netAPayer }</td>
-						<td><a href="<%=request.getContextPath()%>/bulletin/visualiser/${bull.key.id}">Visualiser</a></td>
+						<td><a href="<%=request.getContextPath()%>/mvc/bulletin/visualiser/${bull.key.id}">Visualiser</a></td>
 					</tr>
 				</c:forEach>
 

@@ -97,14 +97,11 @@ public class BulletinController {
 	public ModelAndView visualiser(@PathVariable String id){
 		
 		ModelAndView mav = new ModelAndView();
-		
 		BulletinSalaire bull = repoBull.findOne(Integer.parseInt(id));
-		Map<BulletinSalaire, ResultatCalculRemuneration> mapBull = new TreeMap<>();
-		
-		mapBull.put(bull, calcRem.calculer(bull));
-		
-		mav.setViewName("bulletin/listerBulletins");
-		mav.addObject("mapBull", mapBull);
+	
+		mav.setViewName("bulletin/visualiserBulletin");
+		mav.addObject("bulletin", bull);
+		mav.addObject("calcRem", calcRem.calculer(bull));
 		
 		return mav;
 	}
