@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,7 @@ public class BulletinController {
 	@Autowired private CalculerRemunerationServiceSimple calcRem;
 	
 	@RequestMapping(value="/creer", method = RequestMethod.GET)
+	@Secured("ROLE_ADMINISTRATEUR")
 	public ModelAndView creer(){
 		List<Periode> listPer = repoPer.findAll();
 		List<RemunerationEmploye> listRem = repoEmp.findAll();
@@ -58,6 +60,7 @@ public class BulletinController {
 	}
 	
 	@RequestMapping(value="/creer", method = RequestMethod.POST)
+	@Secured("ROLE_ADMINISTRATEUR")
 	public String formSubmit(@RequestParam("remunerationEmploye") String idRemEmp, 
 			@RequestParam("periode") String idPer,
 			@RequestParam("primeExceptionnelle") String prime){
@@ -68,18 +71,13 @@ public class BulletinController {
 		bull.setPrimeExceptionnelle(new BigDecimal(prime));
 		bull.setDateHeureCreation(LocalDateTime.now());
 		
-		repoBull.save(bull);
-		
-//		ModelAndView mav = new ModelAndView();
-//		List<BulletinSalaire> listBull = repoBull.findAll();
-//		mav.setViewName("bulletin/listerBulletins");
-//		mav.addObject("listBull", listBull);
-		
-		return "redirect:employes/lister";
+		repoBull.save(bull);		
+		return "redirect:/mvc/bulletin/lister";
 	}
 	
 	@RequestMapping(value="/lister", method = RequestMethod.GET)
 	@Transactional
+	@Secured({"ROLE_ADMINISTRATEUR", "ROLE_UTILISATEUR"})
 	public ModelAndView lister(){
 		
 		ModelAndView mav = new ModelAndView();
@@ -94,6 +92,7 @@ public class BulletinController {
 	
 	@RequestMapping(value="/visualiser/{id}", method = RequestMethod.GET)
 	@Transactional
+	@Secured({"ROLE_ADMINISTRATEUR", "ROLE_UTILISATEUR"})
 	public ModelAndView visualiser(@PathVariable String id){
 		
 		ModelAndView mav = new ModelAndView();
