@@ -13,9 +13,6 @@ import dev.paie.service.InitialiserDonneesServiceDev;
 
 public class WebAppInitializer implements WebApplicationInitializer {
 
-	@Autowired
-	private InitialiserDonneesServiceDev initialiser;
-	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		
@@ -29,5 +26,6 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		dispatcher.addMapping("/mvc/*");
 		
 		servletContext.addListener(new ContextLoaderListener(webContext));
+		webContext.close();
 	}
 }

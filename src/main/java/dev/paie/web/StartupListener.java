@@ -21,6 +21,6 @@ public class StartupListener {
 
 	@EventListener({ContextRefreshedEvent.class})
 	void contextRefreshedEvent() {
-		//init.initialiser();
+		init.initialiser();
 	}
 }

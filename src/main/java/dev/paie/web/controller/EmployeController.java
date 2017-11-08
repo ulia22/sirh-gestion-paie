@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +37,7 @@ public class EmployeController {
 	@Autowired private RemunerationEmployeRepository repoRemu;
 	
 	@RequestMapping(value="/creer", method = RequestMethod.GET)
+	@Secured("ROLE_ADMINISTRATEUR")
 	public ModelAndView creer(){
 		List<Entreprise> listEntr = repoEntr.findAll();
 		List<ProfilRemuneration> listProf = repoProf.findAll();
@@ -55,6 +56,7 @@ public class EmployeController {
 	}
 	
 	@RequestMapping(value="/creer", method = RequestMethod.POST)
+	@Secured("ROLE_ADMINISTRATEUR")
 	public String formSubmit(@RequestParam("matricule") String matricule, 
 			@RequestParam("entreprise") String entreprise,
 			@RequestParam("profilRemuneration") String profil,
@@ -73,6 +75,7 @@ public class EmployeController {
 		return "redirect:/mvc/employes/lister";
 	}
 	@RequestMapping(value="/lister", method = RequestMethod.GET)
+	@Secured({"ROLE_ADMINISTRATEUR", "ROLE_UTILISATEUR"})
 	public ModelAndView lister(){
 		
 		ModelAndView mav = new ModelAndView();

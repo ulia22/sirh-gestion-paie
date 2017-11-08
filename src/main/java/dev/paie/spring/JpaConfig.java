@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @ComponentScan({"dev.paie.service", "dev.paie.util"})
-@PropertySource("app.properties")
+@PropertySource("classpath:app.properties")
 @EnableTransactionManagement
 public class JpaConfig {
 

@@ -8,23 +8,21 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
-
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import dev.paie.entite.Cotisation;
 import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
+import dev.paie.entite.Utilisateur;
 import dev.paie.repository.EntrepriseRepository;
 import dev.paie.repository.GradeRepository;
 import dev.paie.repository.PeriodeRepository;
 import dev.paie.repository.ProfilRemunerationRepository;
+import dev.paie.repository.UtilisateurRepository;
 
 /**
  * @author ETY9
@@ -47,11 +45,17 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 	@Autowired 
 	private PeriodeRepository periode;
+	
+	@Autowired
+	private UtilisateurRepository utilisateur;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 
 	@Override
 	public void initialiser() {
 		ClassPathXmlApplicationContext context 	= new ClassPathXmlApplicationContext("profils-remuneration.xml",
-				"cotisations-imposables.xml", "cotisations-non-imposables.xml","entreprises.xml","grades.xml");
+				"cotisations-imposables.xml", "cotisations-non-imposables.xml","entreprises.xml","grades.xml", "utilisateurs.xml");
 
 		Map<String, Cotisation> cotisMap = context.getBeansOfType(Cotisation.class);
 		cotisMap.forEach((k,v) -> {
@@ -75,6 +79,12 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 		periode.save(listerPeriode());
 
+		Map<String, Utilisateur> utilisateurMap = context.getBeansOfType(Utilisateur.class);
+		utilisateurMap.forEach((k,v) -> {
+			v.setMotDePasse(passwordEncoder.encode(v.getMotDePasse()));
+			utilisateur.save(v);
+		});
+		
 		context.close();
 
 	}

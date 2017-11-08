@@ -15,8 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Cotisation;
-import dev.paie.spring.DataSourceMySQLConfig;
-import dev.paie.spring.JpaConfig;
 
 /**
  * @author ETY9
